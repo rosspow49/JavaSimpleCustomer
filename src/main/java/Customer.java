@@ -31,4 +31,9 @@ public class Customer {
     public String getName(){
         return this.firstName + " " + this.lastName;
     }
+
+    public String toString(){
+        return "Name: " + getName() + " Email Address " + emailAddress
+    }
+
 }
