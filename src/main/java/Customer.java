@@ -33,7 +33,7 @@ public class Customer {
     }
 
     public String toString(){
-        return "Name: " + getName() + " Email Address " + emailAddress
+        return "Name: " + getName() + " Email Address " + emailAddress;
     }
 
 }
