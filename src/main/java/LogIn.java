@@ -1,13 +1,23 @@
+import Display.InputConsole;
+import Display.InputInt;
+import Display.OutputConsole;
+import Display.OutputInterface;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class LogIn {
-    private Scanner userInput = new Scanner(System.in);
+    private static InputInt input = new InputConsole();
+    private static OutputInterface output = new OutputConsole();
 
-    private String input(String message) {
-        System.out.println(message);
-        return userInput.nextLine();
+    public static void setInput(InputInt input) {
+        LogIn.input = input;
     }
+
+    public static void setOutput(OutputInterface output) {
+        LogIn.output = output;
+    }
+
 
     private String getPassword(String emailAddress){
         AllCustomers allCustomers = new AllCustomers();
@@ -22,16 +32,16 @@ public class LogIn {
     }
 
     public void logIn() {
-        String emailAddress = input("Enter email address");
+        String emailAddress = input.getInputString("Enter email address");
         String password = getPassword(emailAddress);
         if (password == "") {
-            System.out.println("You are not a user");
+            output.output("You are not a user");
         }
-        else if (password.equals(input("Enter password"))){
-            System.out.println("You are logged in");
+        else if (password.equals(input.getInputString("Enter password"))){
+            output.output("You are logged in");
         }
         else {
-            System.out.println("Wrong password, no second chances");
+            output.output("Wrong password, no second chances");
         }
     }
 

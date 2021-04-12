@@ -1,13 +1,28 @@
+import Display.InputInt;
+import FileInput.GetDelimitedFileData;
+import FileInput.ReadDelimitedFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllCustomers {
-    private List<Customer> listOfCustomers = new ArrayList<Customer>();
+    private List<Customer> listOfCustomers = new ArrayList<>();
     private boolean customersLoaded = false;
+    private static GetDelimitedFileData fileReader;
+    private static boolean fileReaderSet = false;
+
+    public static void setFileReader(GetDelimitedFileData newFileReader){
+        fileReader = newFileReader;
+        fileReaderSet = true;
+    }
+
 
     private List<String[]> loadRawCustomers(){
-        ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
-        return readDelimitedFile.getFileData("customer.csv");
+        if (!fileReaderSet){
+            fileReader = new ReadDelimitedFile();
+            fileReaderSet = true;
+        }
+        return fileReader.getFileData("customer.csv");
     }
 
     private List<Customer>  loadAsCustomers(){

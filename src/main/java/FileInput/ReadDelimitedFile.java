@@ -1,10 +1,12 @@
+package FileInput;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadDelimitedFile {
+public class ReadDelimitedFile implements GetDelimitedFileData{
 
     private String fileDelimitor = ",";
     private String filePathPrefix = "src/main/resources/";
@@ -14,7 +16,7 @@ public class ReadDelimitedFile {
     }
 
     public List<String[]> getFileData(String fileName){
-        List<String[]> fileData = new ArrayList<String[]>();
+        List<String[]> fileData = new ArrayList<>();
         try {
             File propertyFile = new File(filePathPrefix+ fileName);
             Scanner propertyReader = new Scanner(propertyFile);
